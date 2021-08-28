@@ -1,6 +1,7 @@
 package ascii
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -22,4 +23,14 @@ func TestConvert(t *testing.T) {
 			t.Errorf("expect \"%s\", got \"%s\"", tc.expect, out)
 		}
 	}
+}
+
+func ExampleCovnert() {
+	fmt.Println(Convert("Nam quốc sơn hà mam đế cư"))
+	fmt.Println(Convert("Cuántos años tienes"))
+	fmt.Println(Convert("AppleInc 是苹果公司."))
+	// Output:
+	// Nam quoc son ha mam de cu
+	// Cuantos anos tienes
+	// AppleInc .
 }

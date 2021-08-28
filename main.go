@@ -1,3 +1,4 @@
+// Package ascii provides a function to convert unicode string to pure ascii
 package ascii
 
 import (
@@ -29,6 +30,10 @@ var VNMAP = map[rune]rune{
 	'Đ': 'D',
 }
 
+// Convert replaces all non-ascii characters to equivalent ascii characters
+// e.g: â => a, đ => d, ...
+// To ensure the output string is pure ascii, this function remove all
+// characters that does not have equivalent ascii character, for example: 主
 func Convert(text string) string {
 	// fast case: only ascii or vietnamese
 	exception := false
