@@ -40,7 +40,7 @@ func Convert(text string) string {
 	// remove all non-ascii
 	text = strings.Map(func(r rune) rune {
 		if r > unicode.MaxASCII {
-			if 0 == VNMAP[r] {
+			if VNMAP[r] == 0 {
 				exception = true
 				return r
 			}
