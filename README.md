@@ -1,7 +1,7 @@
 # ascii
 # [![GoDoc](https://godoc.org/github.com/thanhpk/ascii?status.svg)](http://godoc.org/github.com/thanhpk/ascii)
 
-Golang utility that converts unicode string (Vietnamese) to ascii string
+Converts an unicode string to an ascii string
 
 ## Install
 ```

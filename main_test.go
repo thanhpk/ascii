@@ -10,6 +10,10 @@ func TestConvert(t *testing.T) {
 		in     string
 		expect string
 	}{
+		{"ß", ""},
+		{"한글", ""},
+		{"æ", ""},
+		{"イーブイ", ""},
 		{"Cộng hòa xã hội chủ nghĩa Việt Nam. Độc lập tự do - hạnh phúc", "Cong hoa xa hoi chu nghia Viet Nam. Doc lap tu do - hanh phuc"},
 		{"République socialiste du Vietnam. Indépendance et liberté - bonheur", "Republique socialiste du Vietnam. Independance et liberte - bonheur"},
 		{"Vietnam Sosyalist Cumhuriyeti. Bağımsızlık ve özgürlük - mutluluk", "Vietnam Sosyalist Cumhuriyeti. Bagmszlk ve ozgurluk - mutluluk"},
