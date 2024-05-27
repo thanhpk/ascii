@@ -5,6 +5,12 @@ import (
 	"testing"
 )
 
+func BenchmarkConvert(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Convert("越南社会主义共和国。独立与自由——幸福 Cộng hòa xã hội chủ nghĩa Việt Nam. Độc lập tự do - hạnh phúc 越南社会主义共和国。独立与自由——幸福 Cộng hòa xã hội chủ nghĩa Việt Nam. Độc lập tự do - hạnh phúc 越南社会主义共和国。独立与自由——幸福 Cộng hòa xã hội chủ nghĩa Việt Nam. Độc lập tự do - hạnh phúc 越南社会主义共和国。独立与自由——幸福 Cộng hòa xã hội chủ nghĩa Việt Nam. Độc lập tự do - hạnh phúc 越南社会主义共和国。独立与自由——幸福 Cộng hòa xã hội chủ nghĩa Việt Nam. Độc lập tự do - hạnh phúc 越南社会主义共和国。独立与自由——幸福 Cộng hòa xã hội chủ nghĩa Việt Nam. Độc lập tự do - hạnh phúc 越南社会主义共和国。独立与自由——幸福 Cộng hòa xã hội chủ nghĩa Việt Nam. Độc lập tự do - hạnh phúc 越南社会主义共和国。独立与自由——幸福 Cộng hòa xã hội chủ nghĩa Việt Nam. Độc lập tự do - hạnh phúc 越南社会主义共和国。独立与自由——幸福 Cộng hòa xã hội chủ nghĩa Việt Nam. Độc lập tự do - hạnh phúc 越南社会主义共和国。独立与自由——幸福 Cộng hòa xã hội chủ nghĩa Việt Nam. Độc lập tự do - hạnh phúc 越南社会主义共和国。独立与自由——幸福 Cộng hòa xã hội chủ nghĩa Việt Nam. Độc lập tự do - hạnh phúc 越南社会主义共和国。独立与自由——幸福 Cộng hòa xã hội chủ nghĩa Việt Nam. Độc lập tự do - hạnh phúc")
+	}
+}
+
 func TestConvert(t *testing.T) {
 	testcases := []struct {
 		in     string

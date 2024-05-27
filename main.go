@@ -30,41 +30,34 @@ var VNMAP = map[rune]rune{
 	'Đ': 'D',
 }
 
+var transformer = transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC)
+
 // Convert replaces all non-ascii characters to equivalent ascii characters
 // e.g: â => a, đ => d, ...
 // To ensure the output string is pure ascii, this function remove all
 // characters that does not have equivalent ascii character, for example: 主
 func Convert(text string) string {
-	// fast case: only ascii or vietnamese
-	exception := false
-	// remove all non-ascii
-	text = strings.Map(func(r rune) rune {
-		if r > unicode.MaxASCII {
-			if VNMAP[r] == 0 {
-				exception = true
-				return r
+	return strings.Map(func(r rune) rune {
+		if r <= unicode.MaxASCII {
+			return r
+		}
+
+		// fast case: only ascii or vietnamese
+		if vnr := VNMAP[r]; vnr != 0 {
+			return vnr
+		}
+
+		// slow case
+		if s, _, err := transform.String(transformer, string(r)); err == nil {
+			for _, r := range s {
+				if r <= unicode.MaxASCII {
+					return r
+				}
+				return -1 // remove all non-ascii
 			}
-			return VNMAP[r]
 		}
-		return r
+
+		// remove all non-ascii
+		return -1
 	}, text)
-
-	if !exception {
-		return text
-	}
-
-	// slower
-	t := transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC)
-	if s, _, err := transform.String(t, text); err == nil {
-		text = s
-	}
-
-	// remove all non-ascii
-	text = strings.Map(func(r rune) rune {
-		if r > unicode.MaxASCII {
-			return -1
-		}
-		return r
-	}, text)
-	return text
 }
