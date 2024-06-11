@@ -2,9 +2,6 @@
 package ascii
 
 import (
-	"golang.org/x/text/runes"
-	"golang.org/x/text/transform"
-	"golang.org/x/text/unicode/norm"
 	"strings"
 	"unicode"
 )
@@ -30,8 +27,6 @@ var VNMAP = map[rune]rune{
 	'Đ': 'D',
 }
 
-var transformer = transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC)
-
 // Convert replaces all non-ascii characters to equivalent ascii characters
 // e.g: â => a, đ => d, ...
 // To ensure the output string is pure ascii, this function remove all
@@ -45,16 +40,6 @@ func Convert(text string) string {
 		// fast case: only ascii or vietnamese
 		if vnr := VNMAP[r]; vnr != 0 {
 			return vnr
-		}
-
-		// slow case
-		if s, _, err := transform.String(transformer, string(r)); err == nil {
-			for _, r := range s {
-				if r <= unicode.MaxASCII {
-					return r
-				}
-				return -1 // remove all non-ascii
-			}
 		}
 
 		// remove all non-ascii

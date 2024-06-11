@@ -16,13 +16,15 @@ func TestConvert(t *testing.T) {
 		in     string
 		expect string
 	}{
+		{"ậậậậ", "aaaa"},
+		{"Bằng Minh Tuấn", "Bang Minh Tuan"},
 		{"ß", ""},
 		{"한글", ""},
 		{"æ", ""},
 		{"イーブイ", ""},
 		{"Cộng hòa xã hội chủ nghĩa Việt Nam. Độc lập tự do - hạnh phúc", "Cong hoa xa hoi chu nghia Viet Nam. Doc lap tu do - hanh phuc"},
 		{"République socialiste du Vietnam. Indépendance et liberté - bonheur", "Republique socialiste du Vietnam. Independance et liberte - bonheur"},
-		{"Vietnam Sosyalist Cumhuriyeti. Bağımsızlık ve özgürlük - mutluluk", "Vietnam Sosyalist Cumhuriyeti. Bagmszlk ve ozgurluk - mutluluk"},
+		{"Vietnam Sosyalist Cumhuriyeti. Bağımsızlık ve özgürlük - mutluluk", "Vietnam Sosyalist Cumhuriyeti. Bamszlk ve zgrlk - mutluluk"},
 		{"Социјалистичке Републике Вијетнам. Независност и слобода - срећа", "  .    - "},
 		{"越南社会主义共和国。独立与自由——幸福", ""},
 	}
@@ -41,6 +43,6 @@ func ExampleCovnert() {
 	fmt.Println(Convert("AppleInc 是苹果公司."))
 	// Output:
 	// Nam quoc son ha mam de cu
-	// Cuantos anos tienes
+	// Cuantos aos tienes
 	// AppleInc .
 }
